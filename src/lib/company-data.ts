@@ -3,14 +3,14 @@ export interface ProductItem {
   name: string;
   brand: "GAZPROMNEFT" | "G-ENERGY" | "G-PROFI";
   category:
-    | "Lubricantes para Vehículos Livianos"
-    | "Productos para Camiones y Maquinarias"
-    | "Aditivos y Grasas Premium";
+    | "Vehículos Livianos"
+    | "Camiones y Maquinaria Pesada"
+    | "Hidráulicos, Refrigerantes y Grasas";
   presentation: string;
   specs: string;
   description: string;
   image: string;
-  badge?: string;
+  tag?: string;
 }
 
 export interface CategoryCard {
@@ -18,64 +18,97 @@ export interface CategoryCard {
   title: string;
   subtitle: string;
   description: string;
-  highlights: string[];
-  accentColor: string;
+  photoUrl: string;
+  photoAlt: string;
+  applications: string[];
 }
 
 export interface BenefitPillar {
   title: string;
   description: string;
-  metric: string;
 }
 
 /**
- * Official company & contact data extracted directly from RUT DIVEZCO 2026.pdf (Formulario DIAN 141143480751)
+ * Fotografías libres de derechos seleccionadas de Unsplash (https://unsplash.com/s/photos/motor-oil)
+ */
+export const UNSPLASH_PHOTOS = {
+  heroMotorOil: {
+    url: "/images/photos/hero-motor-oil.jpg",
+    unsplashSource: "https://unsplash.com/photos/c456f719a1fc",
+    alt: "Aplicación de aceite lubricante en el motor de un vehículo",
+    credit: "Tim Mossholder / Unsplash",
+  },
+  aboutFleet: {
+    url: "/images/photos/flotas-transporte.jpg",
+    unsplashSource: "https://unsplash.com/s/photos/semi-truck",
+    alt: "Transporte de carga pesada en carretera",
+    credit: "Unsplash",
+  },
+  workshopService: {
+    url: "/images/photos/taller-mantenimiento.jpg",
+    unsplashSource: "https://unsplash.com/s/photos/motor-oil",
+    alt: "Servicio de cambio de aceite y mantenimiento especializado",
+    credit: "Unsplash",
+  },
+  lightVehicles: {
+    url: "/images/photos/vehiculos-livianos.jpg",
+    unsplashSource: "https://unsplash.com/s/photos/car-engine-oil",
+    alt: "Automóvil moderno de pasajeros",
+    credit: "Unsplash",
+  },
+  heavyTrucks: {
+    url: "/images/photos/camiones-pesados.jpg",
+    unsplashSource: "https://unsplash.com/s/photos/semi-truck-highway",
+    alt: "Tractocamión de servicio pesado en ruta",
+    credit: "Unsplash",
+  },
+  industrialMachinery: {
+    url: "/images/photos/taller-mantenimiento.jpg",
+    unsplashSource: "https://unsplash.com/s/photos/motor-oil",
+    alt: "Mantenimiento mecánico e industrial de motores",
+    credit: "Unsplash",
+  },
+} as const;
+
+/**
+ * Datos corporativos oficiales de INVERSIONES DIVEZCO S.A.S. (RUT 2026)
  */
 export const COMPANY_DATA = {
-  legalName: "INVERSIONES DIVEZCO SAS",
-  shortName: "DIVEZCO SAS",
-  brandTitle: "OIL MOTOR COLOMBIA • DIVEZCO",
+  legalName: "INVERSIONES DIVEZCO S.A.S.",
+  shortName: "DIVEZCO",
   nit: "900.472.419-1",
-  nitRaw: "900472419-1",
   country: "Colombia",
-  department: "Bogotá D.C.",
   city: "Bogotá, D.C.",
-  address: "CL 15 # 25 - 57",
-  fullAddress: "Calle 15 # 25 - 57, Bogotá D.C., Colombia",
+  address: "Calle 15 N.° 25 - 57",
+  fullAddress: "Calle 15 N.° 25 - 57, Bogotá, D.C., Colombia",
   email: "divezco@hotmail.com",
   phone1Display: "+57 310 553 8025",
   phone1Raw: "573105538025",
   phone2Display: "+57 310 814 4535",
   phone2Raw: "573108144535",
   legalRepresentative: "Iván Camilo Rodríguez Montes",
-  ciiuCode: "4530",
   whatsappUrl:
-    "https://wa.me/573105538025?text=Hola%20Inversiones%20Divezco%20SAS,%20quisiera%20cotizar%20lubricantes%20Gazpromneft%20/%20G-Energy%20en%20Colombia.",
-  whatsappSecondaryUrl:
-    "https://wa.me/573108144535?text=Hola%20Inversiones%20Divezco%20SAS,%20quisiera%20asesor%C3%ADa%20t%C3%A9cnica%20sobre%20lubricantes%20Gazpromneft.",
+    "https://wa.me/573105538025?text=Buen%20d%C3%ADa,%20Inversiones%20Divezco%20S.A.S.%20Deseo%20solicitar%20informaci%C3%B3n%20y%20cotizaci%C3%B3n%20de%20lubricantes%20Gazpromneft%20y%20G-Energy.",
 } as const;
 
 export const REPRESENTED_BRANDS = [
   {
     name: "GAZPROMNEFT",
-    tagline: "Lubricantes Industriales, Diésel Pesado y Automotrices",
+    subtitle: "Lubricantes automotrices, diésel pesado e industriales",
     description:
-      "Gama integral de aceites de motor, fluidos hidráulicos HLP, refrigerantes OAT y grasas de extrema presión diseñados bajo estándares europeos API, ACEA y DIN.",
-    accent: "from-sky-500 to-blue-700",
+      "Portafolio integral de aceites para motor, fluidos hidráulicos, refrigerantes y grasas de extrema presión elaborados bajo normas internacionales API, ACEA y DIN.",
   },
   {
     name: "G-ENERGY",
-    tagline: "Tecnología Sintética Adaptativa (ACF) para Vehículos Modernos",
+    subtitle: "Línea sintética de alto desempeño para vehículos modernos",
     description:
-      "Línea premium 100% sintética aprobada por fabricantes europeos, asiáticos y americanos para máxima protección contra el desgaste y ahorro de combustible.",
-    accent: "from-orange-500 to-amber-600",
+      "Formulaciones 100 % sintéticas con tecnología adaptativa ACF que responden a las exigencias de los principales fabricantes europeos, asiáticos y norteamericanos.",
   },
   {
     name: "G-PROFI",
-    tagline: "Soluciones Heavy-Duty para Flotas, Camiones y Maquinaria",
+    subtitle: "Especialistas en transporte de carga y maquinaria pesada",
     description:
-      "Formulaciones especializadas para servicio severo On-Highway y Off-Highway en transporte de carga, minería, construcción y sector agroindustrial.",
-    accent: "from-cyan-500 to-blue-600",
+      "Lubricantes diseñados para trabajo severo en carretera y fuera de ella, ideales para flotas de camiones, buses, maquinaria amarilla y equipos agroindustriales.",
   },
 ] as const;
 
@@ -83,26 +116,22 @@ export const BENEFIT_PILLARS: BenefitPillar[] = [
   {
     title: "Tecnología Europea",
     description:
-      "Fórmulas avanzadas desarrolladas bajo exigentes estándares internacionales de calidad y aprobaciones OEM.",
-    metric: "API • ACEA • DIN",
+      "Fórmulas avanzadas desarrolladas en centros de investigación europeos bajo estrictos estándares internacionales de calidad.",
   },
   {
     title: "Máximo Rendimiento",
     description:
-      "Mejora la eficiencia operativa del motor, prolonga su vida útil y optimiza su desempeño en arranque en frío y alta carga.",
-    metric: "+35% Estabilidad Térmica",
+      "Mejora la eficiencia del motor, facilita el arranque en frío, prolonga su vida útil y optimiza su desempeño en cualquier geografía.",
   },
   {
     title: "Protección Superior",
     description:
-      "Reduce significativamente el desgaste prematuro, la oxidación, la corrosión y los depósitos en condiciones severas.",
-    metric: "Antidesgaste Avanzado",
+      "Reduce de manera comprobada el desgaste interno, la oxidación, la corrosión y la acumulación de depósitos en condiciones severas de operación.",
   },
   {
     title: "Eficiencia Comprobada",
     description:
-      "Ayuda a disminuir el consumo de combustible y aceite, optimizar intervalos de drenaje y reducir costos de mantenimiento.",
-    metric: "Ahorro en Flotas",
+      "Contribuye a disminuir el consumo de combustible y lubricante, extendiendo los intervalos de mantenimiento y reduciendo los costos operativos de su flota.",
   },
 ];
 
@@ -110,41 +139,44 @@ export const PRODUCT_CATEGORIES: CategoryCard[] = [
   {
     id: "vehiculos-livianos",
     title: "Lubricantes para Vehículos Livianos",
-    subtitle: "Automóviles, SUVs, camionetas y flotas comerciales ligeras",
+    subtitle: "Automóviles, camionetas, camperos y flotas comerciales",
     description:
-      "Aceites sintéticos y semisintéticos de última generación que garantizan limpieza activa del motor, excelente fluidez a bajas temperaturas y protección continua en tráfico urbano o carretera.",
-    highlights: [
-      "Protección superior contra lodos y barnices",
-      "Óptimo arranque en frío y estabilidad viscosimétrica",
-      "Cumplimiento con normas API SP / SN / SL y ACEA A3/B4",
+      "Aceites sintéticos y semisintéticos que aseguran la limpieza continua del motor, excelente estabilidad térmica y protección óptima tanto en el tráfico urbano como en carretera.",
+    photoUrl: UNSPLASH_PHOTOS.lightVehicles.url,
+    photoAlt: UNSPLASH_PHOTOS.lightVehicles.alt,
+    applications: [
+      "Motores a gasolina, diésel liviano y gas natural vehicular (GNV)",
+      "Protección contra el desgaste en arranque y altas temperaturas",
+      "Cumplimiento de normas API SP / SN / SL y ACEA A3/B4",
     ],
-    accentColor: "border-sky-500/40 hover:border-sky-400",
   },
   {
     id: "camiones-y-maquinarias",
-    title: "Productos para Camiones y Maquinarias",
-    subtitle: "Motores diésel pesados, sistemas hidráulicos y refrigeración",
+    title: "Productos para Camiones y Maquinaria",
+    subtitle: "Tractomulas, buses, maquinaria amarilla y sector agrícola",
     description:
-      "Lubricantes Heavy-Duty de alto TBN, fluidos hidráulicos antidesgaste HLP y anticongelantes orgánicos OAT diseñados para soportar jornadas extremas en transporte, obra civil e industria.",
-    highlights: [
-      "Neutralización de ácidos y control de hollín en diésel",
-      "Fluidos hidráulicos HLP con alta filtrabilidad y demulsibilidad",
-      "Refrigerantes SF 12+ libres de silicatos, aminas y fosfatos",
+      "Lubricantes de servicio pesado (Heavy Duty) para motores diésel turboalimentados y sistemas hidráulicos sometidos a jornadas continuas y cargas exigentes en la topografía colombiana.",
+    photoUrl: UNSPLASH_PHOTOS.heavyTrucks.url,
+    photoAlt: UNSPLASH_PHOTOS.heavyTrucks.alt,
+    applications: [
+      "Control superior de hollín y neutralización de ácidos",
+      "Estabilidad de la película lubricante en rutas de montaña",
+      "Aprobaciones para motores europeos y norteamericanos (API CI-4 / CJ-4)",
     ],
-    accentColor: "border-amber-500/40 hover:border-amber-400",
   },
   {
     id: "aditivos-y-grasas",
-    title: "Aditivos y Grasas Premium",
-    subtitle: "Grasas de complejo de litio EP y protección multipropósito",
+    title: "Hidráulicos, Refrigerantes y Grasas",
+    subtitle: "Mantenimiento industrial, sistemas hidráulicos y rodamientos",
     description:
-      "Grasas lubricantes de extrema presión (EP) con elevada resistencia mecánica, térmica y al lavado por agua para rodamientos, articulaciones, chasis y equipos industriales.",
-    highlights: [
-      "Rango térmico extendido desde -30 °C hasta +160 °C",
-      "Alta capacidad de carga y resistencia a cargas de choque",
-      "Sellado eficaz contra contaminación, polvo y humedad",
+      "Fluidos hidráulicos antidesgaste HLP, anticongelantes orgánicos listos para usar y grasas de complejo de litio de extrema presión para equipos móviles y plantas industriales.",
+    photoUrl: UNSPLASH_PHOTOS.industrialMachinery.url,
+    photoAlt: UNSPLASH_PHOTOS.industrialMachinery.alt,
+    applications: [
+      "Aceites hidráulicos ISO VG 32, 46 y 68 con alta filtrabilidad",
+      "Refrigerantes con tecnología orgánica (OAT) libres de silicatos",
+      "Grasas EP resistentes al agua y a temperaturas de hasta 160 °C",
     ],
-    accentColor: "border-cyan-500/40 hover:border-cyan-400",
   },
 ];
 
@@ -153,72 +185,72 @@ export const FEATURED_PRODUCTS: ProductItem[] = [
     id: "gazpromneft-premium-l-10w40",
     name: "GAZPROMNEFT Premium L 10W-40",
     brand: "GAZPROMNEFT",
-    category: "Lubricantes para Vehículos Livianos",
-    presentation: "Botella 1 Litro / Galón 4 Litros",
+    category: "Vehículos Livianos",
+    presentation: "Envase de 1 litro y galón de 4 litros",
     specs: "Semisintético • API SL/CF • ACEA A3/B3",
     description:
-      "Aceite de motor universal semisintético diseñado para proteger motores a gasolina y diésel de vehículos livianos ante altas temperaturas, inhibiendo la formación de depósitos.",
+      "Aceite semisintético versátil para motores a gasolina y diésel de vehículos livianos. Mantiene la presión ideal del aceite y evita la formación de lodos.",
     image: "/images/prod-premium-l.svg",
-    badge: "Más Vendido Livianos",
+    tag: "Vehículos Livianos",
   },
   {
     id: "gazpromneft-diesel-premium-15w40",
     name: "GAZPROMNEFT Diesel Premium 15W-40",
     brand: "GAZPROMNEFT",
-    category: "Productos para Camiones y Maquinarias",
-    presentation: "Bidón 20 Litros / Tambor 205 Litros",
-    specs: "Heavy Duty • API CI-4/SL • ACEA E7 • MB 228.3",
+    category: "Camiones y Maquinaria Pesada",
+    presentation: "Cuñete de 20 litros y tambor de 205 litros",
+    specs: "Servicio Pesado • API CI-4/SL • ACEA E7 • MB 228.3",
     description:
-      "Lubricante de alto rendimiento para motores diésel turboalimentados de servicio pesado en camiones, buses y maquinaria con sistemas EGR y SCR.",
+      "Lubricante de alto desempeño para motores diésel de servicio pesado con turbocompresor y sistemas de recirculación de gases (EGR). Ideal para transporte de carga y maquinaria.",
     image: "/images/prod-diesel-premium.svg",
-    badge: "Servicio Pesado",
+    tag: "Transporte Pesado",
   },
   {
     id: "gazpromneft-hidraulico-hlp-46",
     name: "GAZPROMNEFT Aceite Hidráulico HLP 46",
     brand: "GAZPROMNEFT",
-    category: "Productos para Camiones y Maquinarias",
-    presentation: "Bidón 20 Litros / Tambor 205 Litros",
+    category: "Hidráulicos, Refrigerantes y Grasas",
+    presentation: "Cuñete de 20 litros y tambor de 205 litros",
     specs: "ISO VG 46 • DIN 51524 Parte 2 (HLP)",
     description:
-      "Fluido hidráulico antidesgaste de alta pureza formulado para sistemas hidráulicos industriales y maquinaria móvil sometidos a altas presiones y variaciones térmicas.",
+      "Aceite hidráulico mineral de alta pureza con aditivos antidesgaste, antioxidantes y anticorrosivos para prensas, excavadoras, grúas y equipos industriales.",
     image: "/images/prod-hlp-46.svg",
-    badge: "Industrial & Maquinaria",
+    tag: "Sistemas Hidráulicos",
   },
   {
     id: "gazpromneft-antifreeze-sf-12",
-    name: "GAZPROMNEFT Antifreeze SF 12+ (Rosado)",
+    name: "GAZPROMNEFT Antifreeze SF 12+",
     brand: "GAZPROMNEFT",
-    category: "Productos para Camiones y Maquinarias",
-    presentation: "Lista para usar (Ready to Use) • 4 Lt / 20 Lt",
-    specs: "Tecnología Orgánica OAT • ASTM D3306 / D4985",
+    category: "Hidráulicos, Refrigerantes y Grasas",
+    presentation: "Listo para usar • Galón de 4 litros y cuñete de 20 litros",
+    specs: "Tecnología Orgánica (OAT) • ASTM D3306 / D4985",
     description:
-      "Refrigerante y anticongelante de tecnología de ácidos orgánicos (OAT), libre de nitritos, aminas, fosfatos y silicatos para máxima protección en motores de aluminio y hierro.",
+      "Refrigerante y anticongelante de larga duración formulado con inhibidores orgánicos de corrosión. Protege radiadores, bombas de agua y bloques de aluminio o hierro.",
     image: "/images/prod-antifreeze-sf12.svg",
-    badge: "Tecnología OAT",
+    tag: "Refrigerante OAT",
   },
   {
     id: "gazpromneft-grease-lx-ep-2",
     name: "GAZPROMNEFT Grease LX EP 2",
     brand: "GAZPROMNEFT",
-    category: "Aditivos y Grasas Premium",
-    presentation: "Cartucho 400 Grs / Balde 18 Kg",
+    category: "Hidráulicos, Refrigerantes y Grasas",
+    presentation: "Cartucho de 400 gramos y balde de 18 kilogramos",
     specs: "Complejo de Litio • NLGI 2 • DIN 51502 KP2P-30",
     description:
-      "Grasa multipropósito de extrema presión con jabón complejo de litio para rodamientos y mecanismos que operan bajo cargas severas entre -30 °C y +160 °C.",
+      "Grasa multipropósito de extrema presión con jabón complejo de litio para rodamientos, cubos de rueda y articulaciones sometidas a cargas de impacto y altas temperaturas.",
     image: "/images/prod-grease-lx.svg",
-    badge: "Extrema Presión",
+    tag: "Grasa Extrema Presión",
   },
   {
     id: "g-energy-synthetic-5w30",
-    name: "G-ENERGY Synthetic Far East / F Synth 5W-30",
+    name: "G-ENERGY Synthetic Far East 5W-30",
     brand: "G-ENERGY",
-    category: "Lubricantes para Vehículos Livianos",
-    presentation: "Botella 1 Litro / Galón 4 Litros",
-    specs: "100% Sintético • Tecnología ACF • API SP / ILSAC GF-6A",
+    category: "Vehículos Livianos",
+    presentation: "Envase de 1 litro y galón de 4 litros",
+    specs: "100 % Sintético • Tecnología ACF • API SP / ILSAC GF-6A",
     description:
-      "Lubricante 100% sintético con fórmula adaptativa ACF que ajusta su protección según el régimen de revoluciones del motor y maximiza la economía de combustible.",
+      "Lubricante totalmente sintético de última generación que optimiza el ahorro de combustible y brinda máxima protección a motores modernos de inyección directa y turbocargados.",
     image: "/images/prod-g-energy.svg",
-    badge: "100% Sintético ACF",
+    tag: "100 % Sintético",
   },
 ];

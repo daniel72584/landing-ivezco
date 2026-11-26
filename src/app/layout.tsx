@@ -23,11 +23,11 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${COMPANY_DATA.legalName} | Lubricantes Gazpromneft, G-Profi y G-Energy en Colombia`,
+    default: `${COMPANY_DATA.shortName} Colombia | Distribuidor Oficial de Lubricantes Gazpromneft y G-Energy`,
     template: `%s | ${COMPANY_DATA.legalName}`,
   },
   description:
-    "Distribuidor oficial en Colombia de lubricantes europeos Gazpromneft, G-Profi y G-Energy. Aceites de motor para vehículos livianos, camiones, maquinaria pesada, hidráulicos HLP, refrigerantes OAT y grasas EP. Inversiones Divezco SAS - Bogotá D.C.",
+    "Distribuidor oficial en Colombia de los lubricantes europeos Gazpromneft, G-Profi y G-Energy. Soluciones de lubricación para vehículos livianos, transporte pesado, maquinaria e industria. Inversiones Divezco S.A.S., Bogotá, D.C.",
   keywords: [
     "Gazpromneft Colombia",
     "G-Energy Colombia",
@@ -37,8 +37,6 @@ export const metadata: Metadata = {
     "Aceite 10W40 Gazpromneft",
     "Diesel Premium 15W40",
     "Aceite Hidráulico HLP 46",
-    "Antifreeze SF 12+",
-    "Grease LX EP 2",
     "Lubricantes Bogotá",
   ],
   authors: [{ name: COMPANY_DATA.legalName }],
@@ -48,10 +46,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_CO",
     url: siteUrl,
-    siteName: `${COMPANY_DATA.shortName} - Gazpromneft & G-Energy Colombia`,
-    title: `${COMPANY_DATA.legalName} | Lubricantes Gazpromneft y G-Energy Colombia`,
+    siteName: `${COMPANY_DATA.shortName} - Lubricantes Gazpromneft y G-Energy en Colombia`,
+    title: `${COMPANY_DATA.legalName} | Lubricantes Gazpromneft y G-Energy en Colombia`,
     description:
-      "Soluciones europeas de lubricación para vehículos livianos, transporte pesado, flotas e industria en Colombia. Contacto directo en Bogotá D.C.",
+      "Soluciones europeas de lubricación para vehículos livianos, transporte de carga, flotas e industria en Colombia. Atención directa en Bogotá, D.C.",
   },
   robots: {
     index: true,
@@ -65,11 +63,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="es-CO"
-      className={`${inter.variable} ${montserrat.variable} dark`}
-    >
-      <body className="min-h-screen bg-[#060E1A] text-slate-100 antialiased selection:bg-sky-500 selection:text-white">
+    <html lang="es-CO" className={`${inter.variable} ${montserrat.variable}`}>
+      <body className="min-h-screen bg-white text-slate-900 antialiased selection:bg-[#004B93] selection:text-white">
         {children}
       </body>
     </html>

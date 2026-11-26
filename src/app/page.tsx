@@ -7,296 +7,190 @@ import {
   FEATURED_PRODUCTS,
   PRODUCT_CATEGORIES,
   REPRESENTED_BRANDS,
+  UNSPLASH_PHOTOS,
 } from "@/lib/company-data";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export default function HomePage() {
   return (
-    <div id="inicio" className="min-h-screen bg-[#060E1A] text-slate-100">
+    <div id="inicio" className="min-h-screen bg-white text-slate-900">
       <Navbar />
 
       <main>
-        {/* HERO SECTION (Replicating oilmotorchile.com value proposition for Colombia) */}
-        <section className="relative overflow-hidden border-b border-slate-800/80 bg-gradient-to-b from-[#071426] via-[#060E1A] to-[#081529] py-16 sm:py-24">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(2,132,199,0.18),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(249,115,22,0.14),transparent_45%)]"
-          />
+        {/* PORTADA PRINCIPAL (HERO) CON FOTOGRAFÍA REAL DE UNSPLASH */}
+        <section className="relative overflow-hidden bg-[#001F42] text-white">
+          <div className="absolute inset-0">
+            <Image
+              src={`${basePath}${UNSPLASH_PHOTOS.heroMotorOil.url}`}
+              alt={UNSPLASH_PHOTOS.heroMotorOil.alt}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#001833]/95 via-[#00264D]/85 to-[#001833]/55" />
+          </div>
 
-          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
-              {/* Hero Copy */}
-              <div className="lg:col-span-7">
-                <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-sky-500/30 bg-sky-500/10 px-4 py-1.5 text-xs font-extrabold tracking-widest text-sky-400 uppercase">
-                  <span>Representante y Distribuidor Oficial en Colombia</span>
-                  <span className="text-amber-400">•</span>
-                  <span className="text-amber-300">
-                    {COMPANY_DATA.legalName}
-                  </span>
-                </div>
+          <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-32">
+            <div className="max-w-3xl">
+              <p className="text-sm font-bold tracking-widest text-amber-400 uppercase">
+                Representante y Distribuidor Oficial en Colombia
+              </p>
 
-                <h1 className="mt-6 text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
-                  Lubricantes de{" "}
-                  <span className="bg-gradient-to-r from-sky-400 via-cyan-300 to-amber-400 bg-clip-text text-transparent">
-                    Tecnología Europea
-                  </span>{" "}
-                  para Máxima Exigencia
-                </h1>
+              <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                Lubricantes Europeos de Alta Tecnología para su Motor y su Flota
+              </h1>
 
-                <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
-                  Somos distribuidores en Colombia de las marcas europeas{" "}
-                  <strong className="font-bold text-white">
-                    GAZPROMNEFT, G-PROFI y G-ENERGY
-                  </strong>
-                  . Entregamos soluciones avanzadas de lubricación para{" "}
-                  <strong className="text-sky-300">
-                    vehículos livianos, camiones, maquinarias, flotas, talleres
-                    e industria
-                  </strong>
-                  , respaldados por estándares internacionales API, ACEA y DIN.
-                </p>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-200">
+                En <strong>{COMPANY_DATA.legalName}</strong> distribuimos
+                para el mercado colombiano las marcas{" "}
+                <strong>Gazpromneft, G-Profi y G-Energy</strong>. Ofrecemos
+                aceites de motor, fluidos hidráulicos, refrigerantes y grasas
+                que protegen sus equipos y optimizan su rendimiento bajo las
+                condiciones de operación más exigentes.
+              </p>
 
-                {/* Primary Hero CTAs */}
-                <div className="mt-8 flex flex-wrap items-center gap-4">
-                  <a
-                    href="#productos"
-                    className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 px-7 py-4 text-sm font-extrabold tracking-wide text-white shadow-xl shadow-sky-500/25 transition hover:from-sky-400 hover:to-blue-500"
-                  >
-                    Ver Catálogo de Productos
-                  </a>
-                  <a
-                    href={COMPANY_DATA.whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-xl border border-amber-500/50 bg-amber-500/10 px-7 py-4 text-sm font-extrabold tracking-wide text-amber-300 transition hover:bg-amber-500/20"
-                  >
-                    Solicitar Cotización • {COMPANY_DATA.phone1Display}
-                  </a>
-                </div>
-
-                {/* Quick Trust Credentials */}
-                <dl className="mt-10 grid grid-cols-2 gap-4 border-t border-slate-800/80 pt-8 sm:grid-cols-3">
-                  <div>
-                    <dt className="text-xs font-bold tracking-wider text-slate-400 uppercase">
-                      Marcas Oficiales
-                    </dt>
-                    <dd className="mt-1 text-lg font-extrabold text-white">
-                      Gazpromneft & G-Energy
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="text-xs font-bold tracking-wider text-slate-400 uppercase">
-                      Sede Principal
-                    </dt>
-                    <dd className="mt-1 text-lg font-extrabold text-sky-400">
-                      Bogotá D.C., Colombia
-                    </dd>
-                  </div>
-                  <div className="col-span-2 sm:col-span-1">
-                    <dt className="text-xs font-bold tracking-wider text-slate-400 uppercase">
-                      Respaldo Legal DIAN
-                    </dt>
-                    <dd className="mt-1 text-lg font-extrabold text-amber-400">
-                      NIT {COMPANY_DATA.nit}
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-
-              {/* Hero Product Graphic (LCP Priority Image) */}
-              <div className="lg:col-span-5">
-                <div className="relative mx-auto max-w-lg rounded-3xl border border-sky-500/25 bg-[#09182E]/80 p-4 shadow-2xl shadow-sky-950/60">
-                  <Image
-                    src={`${basePath}/images/hero-engine.svg`}
-                    alt="Lubricantes Gazpromneft, G-Profi y G-Energy distribuidos en Colombia por Inversiones Divezco SAS"
-                    width={640}
-                    height={480}
-                    priority
-                    className="h-auto w-full rounded-2xl"
-                  />
-                  <div className="mt-4 flex items-center justify-between rounded-2xl border border-slate-800 bg-[#060E1A]/90 px-4 py-3 text-xs">
-                    <div>
-                      <p className="font-bold text-white">
-                        Disponibilidad en Bogotá y Despachos Nacionales
-                      </p>
-                      <p className="text-slate-400">
-                        Presentaciones de 1L, 4L, Bidón 20L y Tambor 205L
-                      </p>
-                    </div>
-                    <span className="rounded-lg bg-emerald-500/15 px-2.5 py-1 font-bold text-emerald-400">
-                      Stock Activo
-                    </span>
-                  </div>
-                </div>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <a
+                  href="#catalogo"
+                  className="inline-flex items-center justify-center rounded-lg bg-[#E65100] px-7 py-4 text-sm font-bold text-white shadow-lg transition hover:bg-[#CC4700]"
+                >
+                  Ver Catálogo de Productos
+                </a>
+                <a
+                  href={COMPANY_DATA.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-lg border-2 border-white/80 bg-white/10 px-7 py-4 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white hover:text-[#002B5B]"
+                >
+                  Hablar con un Asesor Comercial
+                </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 4 CORE PILLARS (Exact pillars from oilmotorchile.com) */}
+        {/* FRANJA DE MARCAS REPRESENTADAS */}
         <section
-          id="beneficios"
-          aria-labelledby="pillars-heading"
-          className="border-b border-slate-800/70 bg-[#050B15] py-16"
+          aria-label="Marcas representadas"
+          className="border-b border-slate-200 bg-slate-50 py-10"
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <span className="text-xs font-extrabold tracking-widest text-sky-400 uppercase">
-                Estándares Internacionales
-              </span>
-              <h2
-                id="pillars-heading"
-                className="mt-2 text-3xl font-black text-white sm:text-4xl"
-              >
-                ¿Por qué elegir lubricantes Gazpromneft y G-Energy?
-              </h2>
-            </div>
-
-            <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {BENEFIT_PILLARS.map((pillar) => (
-                <article
-                  key={pillar.title}
-                  className="flex flex-col justify-between rounded-2xl border border-slate-800 bg-[#091526] p-6 transition hover:-translate-y-1 hover:border-sky-500/50"
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+              {REPRESENTED_BRANDS.map((brand) => (
+                <div
+                  key={brand.name}
+                  className="border-l-4 border-[#004B93] pl-5"
                 >
-                  <div>
-                    <span className="inline-block rounded-lg bg-sky-500/15 px-3 py-1 text-xs font-extrabold text-sky-400">
-                      {pillar.metric}
-                    </span>
-                    <h3 className="mt-4 text-xl font-extrabold text-white">
-                      {pillar.title}
-                    </h3>
-                    <p className="mt-2.5 text-sm leading-relaxed text-slate-300">
-                      {pillar.description}
-                    </p>
-                  </div>
-                </article>
+                  <h2 className="text-xl font-black tracking-wide text-[#002B5B]">
+                    {brand.name}
+                  </h2>
+                  <p className="mt-0.5 text-xs font-bold text-[#E65100] uppercase">
+                    {brand.subtitle}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                    {brand.description}
+                  </p>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* REPRESENTANTE OFICIAL / QUIÉNES SOMOS SECTION */}
-        <section
-          id="nosotros"
-          aria-labelledby="about-heading"
-          className="border-b border-slate-800/70 bg-[#071120] py-20"
-        >
+        {/* SECCIÓN QUIÉNES SOMOS CON FOTOGRAFÍA */}
+        <section id="nosotros" className="bg-white py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
               <div className="lg:col-span-6">
-                <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-3.5 py-1 text-xs font-extrabold tracking-widest text-amber-400 uppercase">
-                  Quiénes Somos • Colombia
-                </span>
-                <h2
-                  id="about-heading"
-                  className="mt-4 text-3xl font-black text-white sm:text-4xl"
-                >
-                  Representantes y Distribuidores de Alta Tecnología Europea
-                </h2>
-                <p className="mt-5 text-base leading-relaxed text-slate-300">
-                  Siguiendo el modelo de excelencia de{" "}
-                  <strong className="text-white">Oil Motor</strong> en
-                  Latinoamérica,{" "}
-                  <strong className="text-sky-400">
-                    {COMPANY_DATA.legalName}
-                  </strong>{" "}
-                  (NIT {COMPANY_DATA.nit}) acerca al mercado colombiano el
-                  portafolio de lubricantes, fluidos hidráulicos, refrigerantes
-                  y grasas de{" "}
-                  <strong className="text-white">
-                    Gazpromneft, G-Profi y G-Energy
-                  </strong>
-                  .
+                <p className="text-xs font-bold tracking-widest text-[#E65100] uppercase">
+                  Sobre Nosotros
                 </p>
-                <p className="mt-4 text-base leading-relaxed text-slate-300">
-                  Operamos desde nuestra sede principal en{" "}
-                  <strong className="text-white">
-                    {COMPANY_DATA.fullAddress}
-                  </strong>
-                  , brindando atención técnica personalizada, suministro
-                  confiable para flotas de transporte pesado, maquinaria
-                  industrial, talleres automotrices y distribuidores en todo el
-                  territorio nacional.
+                <h2 className="mt-2 text-3xl font-extrabold text-[#002B5B] sm:text-4xl">
+                  Respaldo y Suministro Confiable para el Sector Automotriz e
+                  Industrial en Colombia
+                </h2>
+                <p className="mt-5 text-base leading-relaxed text-slate-600">
+                  <strong>{COMPANY_DATA.legalName}</strong> es una compañía
+                  colombiana con sede en la ciudad de Bogotá, D.C., dedicada a
+                  la importación y comercialización de lubricantes, fluidos y
+                  grasas de calidad europea.
+                </p>
+                <p className="mt-4 text-base leading-relaxed text-slate-600">
+                  Al igual que la red oficial de distribución de{" "}
+                  <strong>Oil Motor</strong> en Suramérica, ponemos a
+                  disposición de talleres especializados, lubricentros,
+                  empresas de transporte de carga, constructoras e industrias un
+                  portafolio certificado por los principales fabricantes de
+                  motores y maquinaria a nivel mundial.
                 </p>
 
-                <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div className="rounded-2xl border border-slate-800 bg-[#0A182D] p-4">
-                    <p className="text-xs font-bold tracking-wider text-sky-400 uppercase">
-                      Razón Social Oficial
-                    </p>
-                    <p className="mt-1 text-base font-extrabold text-white">
-                      {COMPANY_DATA.legalName}
-                    </p>
-                    <p className="mt-0.5 text-xs text-slate-400">
-                      NIT: {COMPANY_DATA.nit} • CIIU {COMPANY_DATA.ciiuCode}
+                <div className="mt-8 grid grid-cols-1 gap-6 border-t border-slate-200 pt-8 sm:grid-cols-2">
+                  <div>
+                    <h3 className="text-base font-bold text-[#002B5B]">
+                      Asesoría Técnica Especializada
+                    </h3>
+                    <p className="mt-1 text-sm text-slate-600">
+                      Le orientamos en la selección de la viscosidad y
+                      especificación exacta para cada vehículo o equipo de su
+                      operación.
                     </p>
                   </div>
-                  <div className="rounded-2xl border border-slate-800 bg-[#0A182D] p-4">
-                    <p className="text-xs font-bold tracking-wider text-amber-400 uppercase">
-                      Ubicación & Despachos
-                    </p>
-                    <p className="mt-1 text-base font-extrabold text-white">
-                      {COMPANY_DATA.address}
-                    </p>
-                    <p className="mt-0.5 text-xs text-slate-400">
-                      {COMPANY_DATA.city} — {COMPANY_DATA.country}
+                  <div>
+                    <h3 className="text-base font-bold text-[#002B5B]">
+                      Atención a Nivel Nacional
+                    </h3>
+                    <p className="mt-1 text-sm text-slate-600">
+                      Despachamos desde nuestra sede en Bogotá (
+                      {COMPANY_DATA.address}) hacia todas las regiones del país.
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Represented Brands Cards */}
-              <div className="space-y-4 lg:col-span-6">
-                {REPRESENTED_BRANDS.map((brand) => (
-                  <div
-                    key={brand.name}
-                    className="rounded-2xl border border-slate-800 bg-[#0A172B] p-6 shadow-lg"
-                  >
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <span
-                        className={`inline-block rounded-lg bg-gradient-to-r ${brand.accent} px-3.5 py-1 text-sm font-black tracking-wider text-white`}
-                      >
-                        {brand.name}
-                      </span>
-                      <span className="text-xs font-bold tracking-wider text-slate-400 uppercase">
-                        Calidad Europea Certificada
-                      </span>
-                    </div>
-                    <h3 className="mt-3 text-lg font-extrabold text-white">
-                      {brand.tagline}
-                    </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-300">
-                      {brand.description}
-                    </p>
+              <div className="lg:col-span-6">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="relative h-64 overflow-hidden rounded-xl shadow-md sm:h-80">
+                    <Image
+                      src={`${basePath}${UNSPLASH_PHOTOS.workshopService.url}`}
+                      alt={UNSPLASH_PHOTOS.workshopService.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover"
+                    />
                   </div>
-                ))}
+                  <div className="relative h-64 overflow-hidden rounded-xl shadow-md sm:mt-8 sm:h-80">
+                    <Image
+                      src={`${basePath}${UNSPLASH_PHOTOS.aboutFleet.url}`}
+                      alt={UNSPLASH_PHOTOS.aboutFleet.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 3 PRODUCT CATEGORIES (Replicating oilmotorchile.com categories) */}
+        {/* LÍNEAS DE PRODUCTOS CON FOTOGRAFÍAS REALES DE UNSPLASH */}
         <section
-          id="categorias"
-          aria-labelledby="categories-heading"
-          className="border-b border-slate-800/70 bg-[#060E1A] py-20"
+          id="lineas"
+          className="border-y border-slate-200 bg-slate-50 py-20"
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <span className="text-xs font-extrabold tracking-widest text-sky-400 uppercase">
-                Soluciones Integrales de Lubricación
-              </span>
-              <h2
-                id="categories-heading"
-                className="mt-2 text-3xl font-black text-white sm:text-4xl"
-              >
-                Líneas de Productos para Cada Sector
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-xs font-bold tracking-widest text-[#004B93] uppercase">
+                Nuestras Líneas de Negocio
+              </p>
+              <h2 className="mt-2 text-3xl font-extrabold text-[#002B5B] sm:text-4xl">
+                Soluciones para Cada Tipo de Motor y Maquinaria
               </h2>
-              <p className="mt-3 text-base text-slate-300">
-                Cubrimos todas las necesidades de lubricación automotriz,
-                transporte de carga, maquinaria amarilla, sistemas hidráulicos y
-                mantenimiento industrial.
+              <p className="mt-3 text-base text-slate-600">
+                Contamos con referencias específicas para el parque automotor
+                liviano, el transporte pesado de carga y los equipos
+                industriales.
               </p>
             </div>
 
@@ -304,37 +198,52 @@ export default function HomePage() {
               {PRODUCT_CATEGORIES.map((cat) => (
                 <article
                   key={cat.id}
-                  className={`flex flex-col justify-between rounded-3xl border bg-[#0A1628] p-8 transition ${cat.accentColor}`}
+                  className="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:shadow-xl"
                 >
-                  <div>
-                    <h3 className="text-2xl font-black text-white">
-                      {cat.title}
-                    </h3>
-                    <p className="mt-1.5 text-xs font-bold tracking-wider text-sky-400 uppercase">
-                      {cat.subtitle}
-                    </p>
-                    <p className="mt-4 text-sm leading-relaxed text-slate-300">
-                      {cat.description}
-                    </p>
-
-                    <ul className="mt-6 space-y-2.5 border-t border-slate-800 pt-5 text-xs text-slate-200">
-                      {cat.highlights.map((item) => (
-                        <li key={item} className="flex items-start gap-2">
-                          <span className="font-bold text-sky-400">✓</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="relative h-56 w-full">
+                    <Image
+                      src={`${basePath}${cat.photoUrl}`}
+                      alt={cat.photoAlt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-transparent" />
+                    <div className="absolute right-4 bottom-4 left-4">
+                      <h3 className="text-xl font-bold text-white">
+                        {cat.title}
+                      </h3>
+                      <p className="mt-0.5 text-xs font-medium text-amber-300">
+                        {cat.subtitle}
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="mt-8">
-                    <a
-                      href="#productos"
-                      className="inline-flex items-center gap-2 text-sm font-extrabold text-sky-400 transition hover:text-sky-300"
-                    >
-                      <span>Explorar referencias</span>
-                      <span aria-hidden="true">→</span>
-                    </a>
+                  <div className="flex flex-1 flex-col justify-between p-6">
+                    <div>
+                      <p className="text-sm leading-relaxed text-slate-600">
+                        {cat.description}
+                      </p>
+
+                      <ul className="mt-5 space-y-2 border-t border-slate-100 pt-4 text-xs text-slate-700">
+                        {cat.applications.map((item) => (
+                          <li key={item} className="flex items-start gap-2">
+                            <span className="font-bold text-[#004B93]">•</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="mt-6 pt-2">
+                      <a
+                        href="#catalogo"
+                        className="inline-flex items-center gap-1.5 text-sm font-bold text-[#004B93] transition hover:text-[#E65100]"
+                      >
+                        <span>Ver productos de esta línea</span>
+                        <span aria-hidden="true">→</span>
+                      </a>
+                    </div>
                   </div>
                 </article>
               ))}
@@ -342,102 +251,92 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* FEATURED CATALOG SECTION (Exact references from oilmotorchile.com adapted for Colombia quotes) */}
-        <section
-          id="productos"
-          aria-labelledby="catalog-heading"
-          className="border-b border-slate-800/70 bg-[#050C17] py-20"
-        >
+        {/* CATÁLOGO DE PRODUCTOS DESTACADOS */}
+        <section id="catalogo" className="bg-white py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
               <div>
-                <span className="text-xs font-extrabold tracking-widest text-amber-400 uppercase">
-                  Catálogo Oil Motor • Colombia
-                </span>
-                <h2
-                  id="catalog-heading"
-                  className="mt-2 text-3xl font-black text-white sm:text-4xl"
-                >
-                  Productos Destacados Gazpromneft & G-Energy
+                <p className="text-xs font-bold tracking-widest text-[#E65100] uppercase">
+                  Catálogo Destacado
+                </p>
+                <h2 className="mt-2 text-3xl font-extrabold text-[#002B5B] sm:text-4xl">
+                  Referencias Principales Gazpromneft y G-Energy
                 </h2>
-                <p className="mt-2 max-w-2xl text-sm text-slate-300">
-                  Referencias principales para entrega inmediata y cotización al
-                  por mayor o detal a través de{" "}
-                  <strong className="text-white">
-                    {COMPANY_DATA.legalName}
-                  </strong>
-                  .
+                <p className="mt-2 max-w-2xl text-base text-slate-600">
+                  Consulte nuestras referencias de mayor rotación para ventas al
+                  por mayor y al detal. Solicite fichas técnicas y precios para
+                  distribuidores o flotas.
                 </p>
               </div>
               <a
                 href={COMPANY_DATA.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-xl border border-sky-500/40 bg-sky-500/10 px-5 py-3 text-xs font-extrabold tracking-wider text-sky-300 uppercase transition hover:bg-sky-500/20"
+                className="inline-flex shrink-0 items-center justify-center rounded-lg bg-[#004B93] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#003870]"
               >
-                Solicitar Ficha Técnica o Lista de Precios
+                Solicitar Lista de Precios Completa
               </a>
             </div>
 
             <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {FEATURED_PRODUCTS.map((product) => {
                 const productWhatsappUrl = `https://wa.me/${COMPANY_DATA.phone1Raw}?text=${encodeURIComponent(
-                  `Hola ${COMPANY_DATA.legalName}, me interesa cotizar el producto ${product.name} (${product.presentation}).`
+                  `Buen día, ${COMPANY_DATA.legalName}. Me gustaría recibir cotización del producto ${product.name} (${product.presentation}).`
                 )}`;
 
                 return (
                   <article
                     key={product.id}
-                    className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-800 bg-[#091628] transition hover:border-sky-500/50 hover:shadow-2xl hover:shadow-sky-950/50"
+                    className="flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:border-[#004B93]/40 hover:shadow-lg"
                   >
                     <div>
-                      <div className="relative bg-[#071120] p-6">
-                        {product.badge && (
-                          <span className="absolute top-4 left-4 z-10 rounded-full bg-sky-500/20 px-3 py-1 text-[11px] font-extrabold text-sky-300 backdrop-blur-sm">
-                            {product.badge}
+                      <div className="relative flex items-center justify-center bg-slate-900 p-6">
+                        {product.tag && (
+                          <span className="absolute top-3 left-3 rounded-md bg-white/95 px-2.5 py-1 text-[11px] font-bold text-[#002B5B] shadow-sm">
+                            {product.tag}
                           </span>
                         )}
                         <Image
                           src={`${basePath}${product.image}`}
                           alt={product.name}
-                          width={360}
-                          height={360}
-                          className="mx-auto h-56 w-56 object-contain transition duration-300 group-hover:scale-105"
+                          width={260}
+                          height={260}
+                          className="h-48 w-48 object-contain"
                         />
                       </div>
 
                       <div className="p-6">
                         <div className="flex items-center justify-between gap-2 text-xs">
-                          <span className="font-extrabold tracking-wider text-amber-400 uppercase">
+                          <span className="font-bold tracking-wider text-[#E65100] uppercase">
                             {product.brand}
                           </span>
-                          <span className="text-slate-400">
+                          <span className="text-slate-500">
                             {product.presentation}
                           </span>
                         </div>
 
-                        <h3 className="mt-2 text-xl font-black text-white">
+                        <h3 className="mt-2 text-lg font-extrabold text-[#002B5B]">
                           {product.name}
                         </h3>
 
-                        <p className="mt-1.5 text-xs font-semibold text-sky-400">
+                        <p className="mt-1 text-xs font-semibold text-[#004B93]">
                           {product.specs}
                         </p>
 
-                        <p className="mt-3 text-sm leading-relaxed text-slate-300">
+                        <p className="mt-3 text-sm leading-relaxed text-slate-600">
                           {product.description}
                         </p>
                       </div>
                     </div>
 
-                    <div className="border-t border-slate-800/80 bg-[#071222] px-6 py-4">
+                    <div className="border-t border-slate-100 bg-slate-50 px-6 py-4">
                       <a
                         href={productWhatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 px-4 py-3 text-xs font-extrabold tracking-wider text-white uppercase transition hover:from-sky-400 hover:to-blue-500"
+                        className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#004B93] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#003870]"
                       >
-                        <span>Cotizar Referencia</span>
+                        <span>Cotizar este producto</span>
                         <span aria-hidden="true">→</span>
                       </a>
                     </div>
@@ -448,108 +347,117 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* CONTACT & OFFICIAL RUT DIVEZCO 2026 DATA SECTION */}
-        <section
-          id="contacto"
-          aria-labelledby="contact-heading"
-          className="bg-gradient-to-b from-[#060E1A] to-[#040912] py-20"
-        >
+        {/* PILARES DE CALIDAD (Los 4 beneficios de Oil Motor) */}
+        <section className="bg-[#002B5B] py-16 text-white">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-xs font-bold tracking-widest text-amber-400 uppercase">
+                Respaldo Internacional
+              </p>
+              <h2 className="mt-2 text-3xl font-extrabold text-white sm:text-4xl">
+                ¿Por qué elegir lubricantes Gazpromneft y G-Energy?
+              </h2>
+            </div>
+
+            <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {BENEFIT_PILLARS.map((pillar, idx) => (
+                <div
+                  key={pillar.title}
+                  className="rounded-xl border border-white/15 bg-white/5 p-6"
+                >
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[#E65100] text-sm font-black text-white">
+                    0{idx + 1}
+                  </span>
+                  <h3 className="mt-4 text-lg font-bold text-white">
+                    {pillar.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-200">
+                    {pillar.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* SECCIÓN DE CONTACTO CORPORATIVO */}
+        <section id="contacto" className="bg-slate-50 py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-              {/* Left Column: Corporate & RUT Contact Details */}
+              {/* Información de contacto de Inversiones Divezco S.A.S. */}
               <div className="lg:col-span-5">
-                <span className="rounded-full border border-sky-500/30 bg-sky-500/10 px-3.5 py-1 text-xs font-extrabold tracking-widest text-sky-400 uppercase">
-                  Canales Oficiales de Contacto
-                </span>
-                <h2
-                  id="contact-heading"
-                  className="mt-4 text-3xl font-black text-white sm:text-4xl"
-                >
-                  Contáctanos en Colombia
+                <p className="text-xs font-bold tracking-widest text-[#E65100] uppercase">
+                  Contacto Comercial
+                </p>
+                <h2 className="mt-2 text-3xl font-extrabold text-[#002B5B] sm:text-4xl">
+                  Comuníquese con Nosotros
                 </h2>
-                <p className="mt-3 text-sm leading-relaxed text-slate-300">
-                  Comunícate directamente con nuestro equipo comercial y técnico
-                  en Bogotá D.C. para cotizaciones, fichas técnicas, pedidos
-                  mayoristas y convenios para flotas.
+                <p className="mt-4 text-base leading-relaxed text-slate-600">
+                  Estamos a su disposición para atender solicitudes de
+                  cotización, suministro para flotas, compras al por mayor y
+                  asesoría técnica sobre toda nuestra línea de lubricantes.
                 </p>
 
-                {/* Verified Corporate Card from RUT DIVEZCO 2026.pdf */}
-                <div className="mt-8 space-y-5 rounded-3xl border border-slate-800 bg-[#0A1628] p-6 shadow-xl">
-                  <div className="border-b border-slate-800 pb-4">
-                    <p className="text-xs font-bold tracking-wider text-sky-400 uppercase">
-                      Razón Social & NIT (RUT DIAN)
-                    </p>
-                    <p className="mt-1 text-lg font-black text-white">
+                <div className="mt-8 space-y-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+                  <div>
+                    <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase">
+                      Empresa Distribuidora
+                    </h3>
+                    <p className="mt-1 text-lg font-extrabold text-[#002B5B]">
                       {COMPANY_DATA.legalName}
                     </p>
-                    <p className="text-sm font-semibold text-amber-400">
+                    <p className="text-sm font-medium text-slate-600">
                       NIT: {COMPANY_DATA.nit}
                     </p>
                   </div>
 
-                  <div>
-                    <p className="text-xs font-bold tracking-wider text-slate-400 uppercase">
-                      Dirección Principal
-                    </p>
-                    <p className="mt-1 text-base font-bold text-white">
+                  <div className="border-t border-slate-100 pt-5">
+                    <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase">
+                      Dirección en Bogotá
+                    </h3>
+                    <p className="mt-1 text-base font-bold text-slate-800">
                       {COMPANY_DATA.address}
                     </p>
-                    <p className="text-xs text-slate-300">
+                    <p className="text-sm text-slate-600">
                       {COMPANY_DATA.city}, {COMPANY_DATA.country}
                     </p>
                   </div>
 
-                  <div>
-                    <p className="text-xs font-bold tracking-wider text-slate-400 uppercase">
-                      Teléfonos & WhatsApp Corporativo
-                    </p>
-                    <div className="mt-1.5 flex flex-col gap-1.5">
+                  <div className="border-t border-slate-100 pt-5">
+                    <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase">
+                      Líneas Telefónicas y WhatsApp
+                    </h3>
+                    <div className="mt-2 flex flex-col gap-1.5">
                       <a
                         href={`tel:+${COMPANY_DATA.phone1Raw}`}
-                        className="text-base font-extrabold text-sky-400 transition hover:text-sky-300"
+                        className="text-base font-bold text-[#004B93] transition hover:text-[#E65100]"
                       >
-                        📞 {COMPANY_DATA.phone1Display} (Línea Principal)
+                        {COMPANY_DATA.phone1Display}
                       </a>
                       <a
                         href={`tel:+${COMPANY_DATA.phone2Raw}`}
-                        className="text-base font-extrabold text-sky-400 transition hover:text-sky-300"
+                        className="text-base font-bold text-[#004B93] transition hover:text-[#E65100]"
                       >
-                        📞 {COMPANY_DATA.phone2Display} (Línea Comercial 2)
+                        {COMPANY_DATA.phone2Display}
                       </a>
                     </div>
                   </div>
 
-                  <div>
-                    <p className="text-xs font-bold tracking-wider text-slate-400 uppercase">
-                      Correo Electrónico Oficial
-                    </p>
+                  <div className="border-t border-slate-100 pt-5">
+                    <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase">
+                      Correo Electrónico
+                    </h3>
                     <a
                       href={`mailto:${COMPANY_DATA.email}`}
-                      className="mt-1 block text-base font-extrabold text-amber-300 transition hover:text-amber-200"
+                      className="mt-1 block text-base font-bold text-[#004B93] transition hover:text-[#E65100]"
                     >
-                      ✉️ {COMPANY_DATA.email}
+                      {COMPANY_DATA.email}
                     </a>
-                  </div>
-
-                  <div className="border-t border-slate-800 pt-4 text-xs text-slate-400">
-                    <p>
-                      <strong className="text-slate-200">
-                        Representante Legal:
-                      </strong>{" "}
-                      {COMPANY_DATA.legalRepresentative}
-                    </p>
-                    <p className="mt-1">
-                      <strong className="text-slate-200">
-                        Actividad Principal:
-                      </strong>{" "}
-                      CIIU {COMPANY_DATA.ciiuCode} — Comercio de autopartes,
-                      lubricantes y fluidos para vehículos automotores.
-                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* Right Column: Interactive Contact / Quote Form */}
+              {/* Formulario de contacto */}
               <div className="lg:col-span-7">
                 <ContactForm />
               </div>
@@ -558,79 +466,84 @@ export default function HomePage() {
         </section>
       </main>
 
-      {/* FOOTER */}
-      <footer className="border-t border-slate-800/80 bg-[#03070E] py-12 text-xs text-slate-400">
+      {/* PIE DE PÁGINA CORPORATIVO */}
+      <footer className="bg-[#001833] py-12 text-sm text-slate-300">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             <div>
-              <p className="text-base font-black text-white">
+              <p className="text-lg font-black text-white">
                 {COMPANY_DATA.legalName}
               </p>
-              <p className="mt-1 font-semibold text-sky-400">
-                NIT {COMPANY_DATA.nit} • Bogotá D.C., Colombia
+              <p className="mt-1 text-xs font-semibold text-amber-400">
+                NIT {COMPANY_DATA.nit} • Bogotá, D.C., Colombia
               </p>
-              <p className="mt-3 leading-relaxed">
+              <p className="mt-3 text-xs leading-relaxed text-slate-400">
                 Distribuidor oficial en Colombia de lubricantes europeos
                 Gazpromneft, G-Profi y G-Energy para vehículos livianos,
-                camiones, maquinaria pesada e industria.
+                transporte pesado, maquinaria amarilla e industria.
               </p>
             </div>
 
             <div>
-              <p className="font-extrabold tracking-wider text-slate-200 uppercase">
-                Líneas de Productos
+              <p className="text-xs font-bold tracking-wider text-white uppercase">
+                Navegación Rápida
               </p>
-              <ul className="mt-3 space-y-2">
+              <ul className="mt-3 space-y-2 text-xs">
                 <li>
-                  <a href="#productos" className="hover:text-sky-400">
-                    GAZPROMNEFT Premium L 10W-40
+                  <a href="#inicio" className="hover:text-white">
+                    Inicio
                   </a>
                 </li>
                 <li>
-                  <a href="#productos" className="hover:text-sky-400">
-                    GAZPROMNEFT Diesel Premium 15W-40
+                  <a href="#nosotros" className="hover:text-white">
+                    Quiénes Somos
                   </a>
                 </li>
                 <li>
-                  <a href="#productos" className="hover:text-sky-400">
-                    GAZPROMNEFT Aceite Hidráulico HLP 46
+                  <a href="#lineas" className="hover:text-white">
+                    Líneas de Productos
                   </a>
                 </li>
                 <li>
-                  <a href="#productos" className="hover:text-sky-400">
-                    GAZPROMNEFT Antifreeze SF 12+ & Grease LX EP 2
+                  <a href="#catalogo" className="hover:text-white">
+                    Catálogo Destacado
+                  </a>
+                </li>
+                <li>
+                  <a href="#contacto" className="hover:text-white">
+                    Contacto y Cotizaciones
                   </a>
                 </li>
               </ul>
             </div>
 
             <div>
-              <p className="font-extrabold tracking-wider text-slate-200 uppercase">
-                Datos de Contacto (RUT)
+              <p className="text-xs font-bold tracking-wider text-white uppercase">
+                Atención al Cliente
               </p>
-              <ul className="mt-3 space-y-2">
-                <li>📍 {COMPANY_DATA.fullAddress}</li>
+              <ul className="mt-3 space-y-2 text-xs">
+                <li>Dirección: {COMPANY_DATA.fullAddress}</li>
                 <li>
-                  ✉️{" "}
+                  Correo:{" "}
                   <a
                     href={`mailto:${COMPANY_DATA.email}`}
-                    className="text-sky-400 hover:underline"
+                    className="text-amber-300 hover:underline"
                   >
                     {COMPANY_DATA.email}
                   </a>
                 </li>
                 <li>
-                  📞{" "}
+                  Teléfonos:{" "}
                   <a
                     href={`tel:+${COMPANY_DATA.phone1Raw}`}
-                    className="hover:text-sky-400"
+                    className="hover:text-white"
                   >
                     {COMPANY_DATA.phone1Display}
                   </a>{" "}
                   /{" "}
                   <a
                     href={`tel:+${COMPANY_DATA.phone2Raw}`}
-                    className="hover:text-sky-400"
+                    className="hover:text-white"
                   >
                     {COMPANY_DATA.phone2Display}
                   </a>
@@ -639,28 +552,28 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-slate-800/70 pt-6 sm:flex-row">
+          <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-slate-400 sm:flex-row">
             <p>
-              © {new Date().getFullYear()} {COMPANY_DATA.legalName} (NIT{" "}
-              {COMPANY_DATA.nit}). Todos los derechos reservados.
+              © {new Date().getFullYear()} {COMPANY_DATA.legalName} — Todos los
+              derechos reservados.
             </p>
-            <p className="text-slate-500">
-              Inspirado en Oil Motor • Adaptado para Colombia
+            <p>
+              Fotografías bajo licencia libre de Unsplash • Bogotá, D.C.,
+              Colombia
             </p>
           </div>
         </div>
       </footer>
 
-      {/* Floating WhatsApp Button (like oilmotorchile.com) */}
+      {/* Botón flotante de WhatsApp */}
       <a
         href={COMPANY_DATA.whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Contactar por WhatsApp a Inversiones Divezco SAS"
-        className="fixed right-5 bottom-5 z-50 inline-flex items-center gap-2.5 rounded-full bg-emerald-500 px-5 py-3.5 text-xs font-extrabold text-white shadow-2xl shadow-emerald-600/40 transition hover:scale-105 hover:bg-emerald-400"
+        aria-label="Comunicarse por WhatsApp con Inversiones Divezco S.A.S."
+        className="fixed right-5 bottom-5 z-50 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-3.5 text-xs font-bold text-white shadow-xl transition hover:scale-105 hover:bg-[#1EBE5B]"
       >
-        <span className="h-2.5 w-2.5 animate-ping rounded-full bg-white" />
-        <span>WhatsApp Divezco • {COMPANY_DATA.phone1Display}</span>
+        <span>WhatsApp Comercial • {COMPANY_DATA.phone1Display}</span>
       </a>
     </div>
   );

@@ -8,7 +8,7 @@ export function ContactForm() {
   const [company, setCompany] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [segment, setSegment] = useState("Vehículos Livianos");
+  const [segment, setSegment] = useState("Lubricantes para Vehículos Livianos");
   const [message, setMessage] = useState("");
   const [channel, setChannel] = useState<"whatsapp" | "email">("whatsapp");
   const [submitted, setSubmitted] = useState(false);
@@ -25,13 +25,13 @@ export function ContactForm() {
     }
 
     const summary = [
-      `Hola ${COMPANY_DATA.legalName}, solicito cotización / asesoría técnica:`,
+      `Buen día, ${COMPANY_DATA.legalName}. Deseo solicitar una cotización o asesoría comercial:`,
       `• Nombre: ${cleanName}`,
       company.trim() ? `• Empresa / Taller / Flota: ${company.trim()}` : null,
-      `• Teléfono: ${cleanPhone}`,
-      `• Correo: ${cleanEmail}`,
+      `• Teléfono de contacto: ${cleanPhone}`,
+      `• Correo electrónico: ${cleanEmail}`,
       `• Línea de interés: ${segment}`,
-      `• Mensaje: ${cleanMessage}`,
+      `• Solicitud: ${cleanMessage}`,
     ]
       .filter(Boolean)
       .join("\n");
@@ -41,7 +41,7 @@ export function ContactForm() {
       window.open(waLink, "_blank", "noopener,noreferrer");
     } else {
       const subject = encodeURIComponent(
-        `Cotización Lubricantes Gazpromneft / G-Energy - ${cleanName}`
+        `Solicitud de cotización Gazpromneft / G-Energy - ${cleanName}`
       );
       const body = encodeURIComponent(summary);
       window.location.href = `mailto:${COMPANY_DATA.email}?subject=${subject}&body=${body}`;
@@ -53,29 +53,26 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-3xl border border-slate-800 bg-[#0A1628]/90 p-6 shadow-2xl sm:p-8"
+      className="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg sm:p-10"
     >
-      <div className="mb-6">
-        <span className="rounded-full border border-sky-500/30 bg-sky-500/10 px-3 py-1 text-xs font-bold tracking-wider text-sky-400 uppercase">
-          Atención Directa Colombia
-        </span>
-        <h3 className="mt-3 text-2xl font-extrabold text-white">
-          Envíanos un mensaje o solicita cotización
-        </h3>
-        <p className="mt-1.5 text-sm text-slate-400">
-          Completa tus datos y comunícate de inmediato con{" "}
-          <strong className="text-slate-200">{COMPANY_DATA.legalName}</strong>{" "}
-          en Bogotá D.C.
-        </p>
-      </div>
+      <h3 className="text-2xl font-bold text-[#002B5B]">
+        Envíenos su solicitud de cotización
+      </h3>
+      <p className="mt-2 text-sm text-slate-600">
+        Complete el siguiente formulario y un asesor comercial de{" "}
+        <strong className="font-semibold text-slate-800">
+          {COMPANY_DATA.legalName}
+        </strong>{" "}
+        se pondrá en contacto con usted a la mayor brevedad.
+      </p>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
           <label
             htmlFor="contact-name"
-            className="block text-xs font-bold tracking-wider text-slate-300 uppercase"
+            className="block text-sm font-semibold text-slate-700"
           >
-            Nombre completo *
+            Nombre y apellidos *
           </label>
           <input
             id="contact-name"
@@ -83,34 +80,34 @@ export function ContactForm() {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Ej. Carlos Gómez"
-            className="mt-1.5 w-full rounded-xl border border-slate-700/80 bg-[#060E1A] px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-sky-500 focus:outline-none"
+            placeholder="Ej.: Juan Carlos Rodríguez"
+            className="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-[#004B93] focus:ring-2 focus:ring-[#004B93]/20 focus:outline-none"
           />
         </div>
 
         <div>
           <label
             htmlFor="contact-company"
-            className="block text-xs font-bold tracking-wider text-slate-300 uppercase"
+            className="block text-sm font-semibold text-slate-700"
           >
-            Empresa / Flota / Lubricentro
+            Empresa, flota o lubricentro
           </label>
           <input
             id="contact-company"
             type="text"
             value={company}
             onChange={(e) => setCompany(e.target.value)}
-            placeholder="Opcional"
-            className="mt-1.5 w-full rounded-xl border border-slate-700/80 bg-[#060E1A] px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-sky-500 focus:outline-none"
+            placeholder="Nombre de su empresa (opcional)"
+            className="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-[#004B93] focus:ring-2 focus:ring-[#004B93]/20 focus:outline-none"
           />
         </div>
 
         <div>
           <label
             htmlFor="contact-phone"
-            className="block text-xs font-bold tracking-wider text-slate-300 uppercase"
+            className="block text-sm font-semibold text-slate-700"
           >
-            Teléfono / Celular *
+            Teléfono o celular *
           </label>
           <input
             id="contact-phone"
@@ -118,15 +115,15 @@ export function ContactForm() {
             required
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            placeholder="+57 300 000 0000"
-            className="mt-1.5 w-full rounded-xl border border-slate-700/80 bg-[#060E1A] px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-sky-500 focus:outline-none"
+            placeholder="Ej.: 310 000 0000"
+            className="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-[#004B93] focus:ring-2 focus:ring-[#004B93]/20 focus:outline-none"
           />
         </div>
 
         <div>
           <label
             htmlFor="contact-email"
-            className="block text-xs font-bold tracking-wider text-slate-300 uppercase"
+            className="block text-sm font-semibold text-slate-700"
           >
             Correo electrónico *
           </label>
@@ -136,49 +133,54 @@ export function ContactForm() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="correo@empresa.com"
-            className="mt-1.5 w-full rounded-xl border border-slate-700/80 bg-[#060E1A] px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-sky-500 focus:outline-none"
+            placeholder="nombre@empresa.com.co"
+            className="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-[#004B93] focus:ring-2 focus:ring-[#004B93]/20 focus:outline-none"
           />
         </div>
       </div>
 
-      <div className="mt-4">
+      <div className="mt-5">
         <label
           htmlFor="contact-segment"
-          className="block text-xs font-bold tracking-wider text-slate-300 uppercase"
+          className="block text-sm font-semibold text-slate-700"
         >
-          Categoría de producto requerida
+          Línea de productos de su interés
         </label>
         <select
           id="contact-segment"
           value={segment}
           onChange={(e) => setSegment(e.target.value)}
-          className="mt-1.5 w-full rounded-xl border border-slate-700/80 bg-[#060E1A] px-4 py-3 text-sm text-white focus:border-sky-500 focus:outline-none"
+          className="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 focus:border-[#004B93] focus:ring-2 focus:ring-[#004B93]/20 focus:outline-none"
         >
           <option value="Lubricantes para Vehículos Livianos">
             Lubricantes para Vehículos Livianos (Gazpromneft / G-Energy)
           </option>
-          <option value="Productos para Camiones y Maquinarias">
-            Productos para Camiones y Maquinarias (Diesel Premium / G-Profi)
+          <option value="Productos para Camiones y Maquinaria Pesada">
+            Lubricantes para Camiones y Maquinaria Pesada (Diesel Premium /
+            G-Profi)
           </option>
-          <option value="Aceites Hidráulicos HLP y Refrigerantes OAT">
+          <option value="Aceites Hidráulicos y Refrigerantes">
             Aceites Hidráulicos HLP 46 y Refrigerantes Antifreeze SF 12+
           </option>
-          <option value="Aditivos y Grasas Premium">
-            Aditivos y Grasas Premium (Grease LX EP 2)
+          <option value="Grasas Lubricantes de Extrema Presión">
+            Grasas Lubricantes de Extrema Presión (Grease LX EP 2)
           </option>
-          <option value="Distribución Mayorista / Flotas">
-            Distribución Mayorista / Atención a Flotas y Talleres
+          <option value="Distribución Mayorista o Atención a Flotas">
+            Distribución Mayorista / Suministro para Flotas y Talleres
           </option>
         </select>
       </div>
 
-      <div className="mt-4">
+      <div className="mt-5">
         <label
           htmlFor="contact-message"
-          className="block text-xs font-bold tracking-wider text-slate-300 uppercase"
+          className="block text-sm font-semibold text-slate-700"
         >
-          Mensaje o referencias a cotizar *
+          Detalle de su requerimiento *
+          <span className="block text-xs font-normal text-slate-500">
+            Indíquenos las viscosidades, presentaciones o referencias que desea
+            cotizar.
+          </span>
         </label>
         <textarea
           id="contact-message"
@@ -186,33 +188,33 @@ export function ContactForm() {
           required
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder="Indícanos viscosidades (10W-40, 15W-40, 5W-30, HLP 46), presentaciones (1L, 4L, 20L, tambor) o fichas técnicas requeridas..."
-          className="mt-1.5 w-full rounded-xl border border-slate-700/80 bg-[#060E1A] px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-sky-500 focus:outline-none"
+          placeholder="Escriba aquí su mensaje..."
+          className="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-[#004B93] focus:ring-2 focus:ring-[#004B93]/20 focus:outline-none"
         />
       </div>
 
-      <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <button
           type="submit"
           onClick={() => setChannel("whatsapp")}
-          className="flex-1 cursor-pointer rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 px-5 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-500/20 transition hover:from-emerald-400 hover:to-teal-500"
+          className="flex-1 cursor-pointer rounded-lg bg-[#E65100] px-6 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#CC4700]"
         >
-          Enviar por WhatsApp ({COMPANY_DATA.phone1Display})
+          Enviar solicitud por WhatsApp
         </button>
         <button
           type="submit"
           onClick={() => setChannel("email")}
-          className="flex-1 cursor-pointer rounded-xl border border-sky-500/50 bg-sky-500/10 px-5 py-3.5 text-sm font-bold text-sky-300 transition hover:bg-sky-500/20"
+          className="flex-1 cursor-pointer rounded-lg border border-[#004B93] bg-white px-6 py-3.5 text-sm font-bold text-[#004B93] transition hover:bg-slate-50"
         >
-          Enviar a {COMPANY_DATA.email}
+          Enviar por correo electrónico
         </button>
       </div>
 
       {submitted && (
-        <p className="mt-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs font-medium text-emerald-300">
-          ¡Listo! Se abrió tu canal de contacto directo con Inversiones Divezco
-          SAS. También puedes llamarnos al {COMPANY_DATA.phone1Display} o{" "}
-          {COMPANY_DATA.phone2Display}.
+        <p className="mt-4 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs font-medium text-emerald-800">
+          Muchas gracias por comunicarse con {COMPANY_DATA.legalName}. Se ha
+          abierto su canal de atención directa; también puede llamarnos a las
+          líneas {COMPANY_DATA.phone1Display} o {COMPANY_DATA.phone2Display}.
         </p>
       )}
     </form>
