@@ -5,17 +5,18 @@
 - **Allowed (Repository Files)**: Antigravity is permitted to create, edit, and delete any file within this repository (`/Users/macbook/Documents/repos/gazprom`).
 - **Denied (`.env`)**: Antigravity MUST NOT create, edit, overwrite, or delete `.env` (or `.env.*` secret files) under any circumstances, whether via file tools (`write_file`, `edit_file`) or shell commands (`run_command`).
   - If environment variables need to be documented or updated for reference, edit `.env.example` instead and ask the user to update `.env` manually.
-- **Allowed (`gh` CLI & Git Commands)**: Antigravity is permitted to run GitHub CLI (`gh`) and `git` commands in this workspace to manage repositories, branches, and Pull Requests.
+- **Allowed (`gh` CLI & Git Commands)**: Antigravity is permitted to run all `git` and GitHub CLI (`gh`) commands—including pushing feature/fix branches (`git push -u origin <feature-branch>`) and creating/managing Pull Requests (`gh pr create`, `gh pr view`, `gh pr list`).
+- **Denied (Direct Push to Production)**: Antigravity MUST NEVER push directly to production branches (`main`, `master`, `prod`, `production`).
 
 ---
 
 ## 2. Git & GitHub PR Workflow Rule
 
-- **Single Initial Push to `main`**: Pushing directly to `main` (`git push -u origin main`) is permitted **only once** for the initial repository bootstrap (when `origin/main` does not yet exist).
-- **All Subsequent Changes via Pull Requests**: After the initial push to `main`, direct pushes to `main` are strictly forbidden. For all subsequent changes, Antigravity MUST:
+- **No Direct Push to Production (`main` / `prod` / `production` / `master`)**: Now that the initial repository bootstrap on `main` is complete, pushing directly to `main`, `master`, `prod`, or `production` is strictly forbidden under all circumstances.
+- **All Changes via Feature Branches & Pull Requests**: For every change, Antigravity MUST:
   1. Create and switch to a descriptive feature or fix branch (`git checkout -b <type>/<short-description>`).
-  2. Commit changes and push the branch to origin (`git push -u origin <branch>`).
-  3. Open a Pull Request targeting `main` using the GitHub CLI (`gh pr create --base main ...`).
+  2. Commit changes and push the feature branch to origin (`git push -u origin <branch>`).
+  3. Open a Pull Request targeting `main` (or `prod`) using the GitHub CLI (`gh pr create --base main ...`) for user review.
 
 ---
 
