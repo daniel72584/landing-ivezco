@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" fill="none">
+  <rect width="360" height="360" rx="24" fill="#0B192C"/>
+  <circle cx="180" cy="180" r="130" fill="#F59E0B" fill-opacity="0.16"/>
+  <rect x="125" y="55" width="110" height="255" rx="14" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+  <rect x="145" y="38" width="70" height="17" rx="5" fill="#F59E0B"/>
+  <rect x="135" y="95" width="90" height="175" rx="8" fill="#071324" stroke="#FBBF24" stroke-width="1.5"/>
+  <rect x="135" y="95" width="90" height="26" rx="6" fill="#D97706"/>
+  <text x="180" y="112" fill="#FFFFFF" font-family="Arial, sans-serif" font-weight="800" font-size="9" text-anchor="middle">GAZPROMNEFT</text>
+  <text x="180" y="150" fill="#FBBF24" font-family="Arial, sans-serif" font-weight="900" font-size="15" text-anchor="middle">GREASE</text>
+  <text x="180" y="178" fill="#FFFFFF" font-family="Arial, sans-serif" font-weight="900" font-size="18" text-anchor="middle">LX EP 2</text>
+  <text x="180" y="206" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="700" font-size="9" text-anchor="middle">COMPLEJO DE LITIO</text>
+  <text x="180" y="226" fill="#38BDF8" font-family="Arial, sans-serif" font-weight="700" font-size="9" text-anchor="middle">-30 °C A +160 °C</text>
+  <text x="180" y="252" fill="#E2E8F0" font-family="Arial, sans-serif" font-weight="800" font-size="11" text-anchor="middle">400 GRS</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" fill="none">
+  <rect width="360" height="360" rx="24" fill="#0B192C"/>
+  <circle cx="180" cy="180" r="130" fill="#FF6B00" fill-opacity="0.18"/>
+  <path d="M115 110 C115 92 130 80 150 80 L198 80 L212 55 L244 55 L244 80 C258 88 265 104 265 122 L265 300 C265 310 255 318 242 318 L136 318 C124 318 115 310 115 300 Z" fill="#1E293B" stroke="#FF6B00" stroke-width="2"/>
+  <rect x="210" y="38" width="36" height="17" rx="4" fill="#FF6B00"/>
+  <rect x="134" y="130" width="112" height="150" rx="10" fill="#071324" stroke="#FF6B00" stroke-width="1.5"/>
+  <rect x="134" y="130" width="112" height="28" rx="8" fill="#FF6B00"/>
+  <text x="190" y="148" fill="#FFFFFF" font-family="Arial, sans-serif" font-weight="900" font-size="12" text-anchor="middle">G-ENERGY</text>
+  <text x="190" y="182" fill="#FDBA74" font-family="Arial, sans-serif" font-weight="900" font-size="14" text-anchor="middle">F SYNTH / FAR EAST</text>
+  <text x="190" y="210" fill="#FFFFFF" font-family="Arial, sans-serif" font-weight="900" font-size="22" text-anchor="middle">5W-30</text>
+  <text x="190" y="234" fill="#38BDF8" font-family="Arial, sans-serif" font-weight="700" font-size="10" text-anchor="middle">100% SINTÉTICO • ACF</text>
+  <text x="190" y="260" fill="#E2E8F0" font-family="Arial, sans-serif" font-weight="700" font-size="10" text-anchor="middle">4 LITROS • API SP / ILSAC GF-6A</text>
+</svg>

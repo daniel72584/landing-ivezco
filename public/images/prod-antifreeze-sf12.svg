@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" fill="none">
+  <rect width="360" height="360" rx="24" fill="#0B192C"/>
+  <circle cx="180" cy="180" r="130" fill="#EC4899" fill-opacity="0.16"/>
+  <path d="M110 105 C110 88 124 76 144 76 L200 76 L214 54 L244 54 L244 76 C256 84 262 98 262 115 L262 298 C262 310 252 318 240 318 L132 318 C120 318 110 310 110 298 Z" fill="#1E293B" stroke="#F43F5E" stroke-width="2"/>
+  <rect x="212" y="38" width="34" height="16" rx="4" fill="#F43F5E"/>
+  <rect x="130" y="130" width="112" height="150" rx="10" fill="#071324" stroke="#F43F5E" stroke-width="1.5"/>
+  <rect x="130" y="130" width="112" height="28" rx="8" fill="#E11D48"/>
+  <text x="186" y="148" fill="#FFFFFF" font-family="Arial, sans-serif" font-weight="800" font-size="10" text-anchor="middle">GAZPROMNEFT</text>
+  <text x="186" y="182" fill="#FDA4AF" font-family="Arial, sans-serif" font-weight="900" font-size="14" text-anchor="middle">ANTIFREEZE</text>
+  <text x="186" y="210" fill="#FFFFFF" font-family="Arial, sans-serif" font-weight="900" font-size="22" text-anchor="middle">SF 12+</text>
+  <text x="186" y="234" fill="#F43F5E" font-family="Arial, sans-serif" font-weight="700" font-size="10" text-anchor="middle">TECNOLOGÍA ORGÁNICA OAT</text>
+  <text x="186" y="260" fill="#E2E8F0" font-family="Arial, sans-serif" font-weight="700" font-size="10" text-anchor="middle">READY TO USE • ROSADO</text>
+</svg>
