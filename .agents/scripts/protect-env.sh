@@ -5,6 +5,17 @@ import re
 import subprocess
 import sys
 
+PROTECTED_PROD_BRANCHES = {
+    "main",
+    "master",
+    "prod",
+    "production",
+    "refs/heads/main",
+    "refs/heads/master",
+    "refs/heads/prod",
+    "refs/heads/production",
+}
+
 
 def is_env_path(path_str: str) -> bool:
     if not path_str:
@@ -22,21 +33,6 @@ def is_env_path(path_str: str) -> bool:
     return False
 
 
-def origin_main_exists(repo_dir: str) -> bool:
-    """Return True if our initial bootstrap commit (containing AGENTS.md) has already been pushed to origin/main."""
-    try:
-        res = subprocess.run(
-            ["git", "cat-file", "-e", "refs/remotes/origin/main:AGENTS.md"],
-            cwd=repo_dir,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-            check=False,
-        )
-        return res.returncode == 0
-    except Exception:
-        return False
-
-
 def current_git_branch(repo_dir: str) -> str:
     try:
         res = subprocess.run(
@@ -51,12 +47,11 @@ def current_git_branch(repo_dir: str) -> str:
         return ""
 
 
-def is_pushing_to_main(cmd: str, repo_dir: str) -> bool:
-    """Detect whether a shell command pushes directly to main."""
-    # Look for git push invocations
+def is_pushing_to_prod(cmd: str, repo_dir: str) -> str | None:
+    """Return the protected branch name if the command attempts to push directly to a production branch."""
     push_segments = re.findall(r"\bgit\s+push\b([^;&|\n]*)", cmd)
     if not push_segments:
-        return False
+        return None
 
     for args_str in push_segments:
         tokens = [
@@ -64,18 +59,23 @@ def is_pushing_to_main(cmd: str, repo_dir: str) -> bool:
             for t in args_str.strip().split()
             if not t.startswith("-")
         ]
-        # Explicit target branch in git push <remote> <refspec>
+        # Explicit target branch in `git push <remote> <refspec>`
         if len(tokens) >= 2:
-            refspec = tokens[1]
-            target_ref = refspec.split(":")[-1]
-            if target_ref in {"main", "refs/heads/main"}:
-                return True
+            for refspec in tokens[1:]:
+                target_ref = refspec.split(":")[-1].lstrip("+")
+                if target_ref in PROTECTED_PROD_BRANCHES:
+                    return target_ref
+                if target_ref == "HEAD":
+                    curr = current_git_branch(repo_dir)
+                    if curr in PROTECTED_PROD_BRANCHES:
+                        return curr
         else:
-            # `git push` or `git push origin` without explicit branch -> check current branch
-            if current_git_branch(repo_dir) == "main":
-                return True
+            # `git push` or `git push origin` without explicit refspec -> check current checked-out branch
+            curr = current_git_branch(repo_dir)
+            if curr in PROTECTED_PROD_BRANCHES:
+                return curr
 
-    return False
+    return None
 
 
 def main() -> None:
@@ -126,25 +126,30 @@ def main() -> None:
             )
             return
 
-        # 2. Enforce "Only push to main once, then generate PRs"
-        if is_pushing_to_main(cmd, repo_dir) and origin_main_exists(repo_dir):
+        # 2. Block any direct push to production branches (main, master, prod, production)
+        prod_target = is_pushing_to_prod(cmd, repo_dir)
+        if prod_target:
             print(
                 json.dumps(
                     {
                         "decision": "deny",
-                        "reason": "Direct push to 'main' is only allowed once (initial bootstrap). Please push to a feature branch and open a Pull Request with 'gh pr create'.",
+                        "reason": f"Direct push to production branch '{prod_target}' is blocked. Push to a feature branch and open a Pull Request with 'gh pr create'.",
                     }
                 )
             )
             return
 
-        # 3. Allow gh and git commands (with permissionOverrides)
+        # 3. Allow git (including pushing feature branches) and gh commands automatically
         if re.search(r"\b(gh|git)\b", cmd):
             print(
                 json.dumps(
                     {
                         "decision": "allow",
-                        "permissionOverrides": ["command(gh)", "command(git)"],
+                        "permissionOverrides": [
+                            "command(git)",
+                            "command(git push)",
+                            "command(gh)",
+                        ],
                     }
                 )
             )
